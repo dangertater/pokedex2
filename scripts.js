@@ -2,6 +2,7 @@
 let freshJSONObjects = []
 let initialFetchArray = []
 let firstGenObjectsArray = []
+let namesArray = []
 //will fetch the api information
 
 //q4e reference 'how are they different' at bottom of page
@@ -13,9 +14,13 @@ let fetchPokedexAPI = async (url) => {
 	let res = await fetch(url)
 	let data = await res.json()
 	freshJSONObjects.push(data)
+	// for (pokemon of )
 	let nextURL = freshJSONObjects[0].next
 	fetchPokedexAPI(nextURL)
-	console.log(freshJSONObjects)
+    for (pokemonName of freshJSONObjects[0].result[])
+	console.log("freshJSONObjects", freshJSONObjects)
+
+	console.log("freshJSONObjects[0]", freshJSONObjects[0])
 }
 
 // let JSONthis = (res) => {}
