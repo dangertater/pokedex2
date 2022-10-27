@@ -1,8 +1,42 @@
-// let body = document.getElementById("body")
+let body = document.getElementById("body")
 let freshJSONObjects = []
 let initialFetchArray = []
 let firstGenObjectsArray = []
 let namesArray = []
+let numberWords = [
+	"One",
+	"Two",
+	"Three",
+	"Four",
+	"Five",
+	"Six",
+	"Seven",
+	"Eight",
+	"Nine",
+	"Ten",
+	"Eleven",
+	"Twelve",
+	"Thirteen",
+	"Fourteen",
+	"Fifteen",
+	"Sixteen",
+	"Seventeen",
+	"Eighteen",
+	"Nineteen",
+	"Twenty",
+]
+let singleAccordianString = `<div class="accordion-item" id="accordian${numberWords}[pokemonName]">
+<h2 class="accordion-header" id="heading${numberWords}[pokemonName]">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${numberWords}" aria-expanded="false" aria-controls="collapse${numberWords}[pokemonName]">
+    ${namesArray}[pokemonName]
+    </button>
+</h2>
+<div id="collapse${numberWords}[pokemonName]" class="accordion-collapse collapse" aria-labelledby="heading${numberWords}[pokemonName]" data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+    </div>
+</div>
+</div>`
 //will fetch the api information
 
 //q4e reference 'how are they different' at bottom of page
@@ -13,20 +47,20 @@ let fetchPokedexAPI = async (url) => {
 	}
 	let res = await fetch(url)
 	let data = await res.json()
-	freshJSONObjects.push(data)
-	// for (pokemon of )
-	let nextURL = freshJSONObjects[0].next
-	fetchPokedexAPI(nextURL)
-    for (pokemonName of freshJSONObjects[0].result[])
-	console.log("freshJSONObjects", freshJSONObjects)
-
-	console.log("freshJSONObjects[0]", freshJSONObjects[0])
+	for (let i = 0; i < data.results.length; i++) {
+		namesArray.push(data.results[i].name)
+	}
+	// singleAccordianHTMLGenerator()
 }
 
-// let JSONthis = (res) => {}
+let singleAccordianHTMLGenerator = () => {
+	for (pokemonName of namesArray) {
+		body = body + singleAccordianString
+	}
+}
 
 fetchPokedexAPI("https://pokeapi.co/api/v2/pokemon")
-// then((res) => res.json()).then()
+singleAccordianHTMLGenerator()
 
 //q4e how are they different?
 //----let fetchPokedexAPI = async () => {
